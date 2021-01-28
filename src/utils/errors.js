@@ -11,8 +11,9 @@ class ApplicationError extends Error {
    * @param {string} message error message
    * @param {array} errors an array containing errors
    */
-  constructor(statusCode, message = 'an error occurred', data) {
+  constructor(statusCode, message = 'an error occurred.', data) {
     super(message);
+    this.statusCode = statusCode;
     this.status = 'error';
     this.message = message;
     this.data = data || null;
@@ -26,7 +27,7 @@ class BadRequestError extends ApplicationError {
    * @param {string} message error message
    */
   constructor(message, data) {
-    super(400, message || 'Invalid request');
+    super(400, message || 'Invalid JSON payload passed.');
   }
 }
 

@@ -22,7 +22,7 @@ module.exports = (err, request, response, next) => {
 
   if (!isProduction) {
     console.log(err.stack);
-    errorMessage = err;
+    errorMessage = err.stack;
   }
 
   return response.status(err.statusCode || 500).json({
