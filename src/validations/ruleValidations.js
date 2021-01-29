@@ -1,6 +1,6 @@
 const { BadRequestError } = require('../utils/errors');
 
-class validateRule {
+class ValidateRule {
   /**
    *Creates an instance of validateRule.
    * @param {Object} body the request body containing rules and data
@@ -41,8 +41,6 @@ class validateRule {
    * @memberof validateRule
    */
   isJSONObject(obj, key) {
-    console.log(obj);
-    console.log(key);
     try {
       if (typeof obj !== 'object' || Array.isArray(obj) || obj === null) {
         throw new BadRequestError(`${key} should be an object.`);
@@ -153,4 +151,4 @@ class validateRule {
   }
 }
 
-module.exports = validateRule;
+module.exports = ValidateRule;

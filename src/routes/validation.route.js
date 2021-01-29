@@ -1,10 +1,8 @@
 const { Router } = require('express');
-const validateReqBody = require('../middleware/validateRule');
+const { validateRule } = require('../controllers/validateRule.controller');
+const validation = require('../middleware/validation');
 const validateRouter = Router();
 
-validateRouter.post('/', validateReqBody, (request, response) => {
-  response.status(200).send({
-    hi: 'hello',
-  });
-});
+validateRouter.post('/', validation, validateRule);
+
 module.exports = validateRouter;
