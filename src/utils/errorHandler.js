@@ -20,10 +20,15 @@ module.exports = (err, request, response, next) => {
     return next(err);
   }
 
-  if (!isProduction) {
-    console.log(err.stack);
-    errorMessage = err.stack;
+  if (
+    err instanceof SyntaxError &&
+    err.message.includes('Unexpected token " in JSON')
+  ) {
+    err.message = 'Invalid JSON payload passed.';
   }
+
+  errorMessage = err.stack;
+  console.log(errorMessage);
 
   return response.status(err.statusCode || 500).json({
     message: err.message,

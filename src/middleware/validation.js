@@ -1,7 +1,7 @@
-const ValidateRule = require('../validations/ruleValidations');
+const ValidateReqBody = require('../validations/ruleValidations');
 
 module.exports = (request, response, next) => {
-  const validation = new ValidateRule(request.body);
+  const validation = new ValidateReqBody(request.body);
   validation.validateRule();
   next();
 };

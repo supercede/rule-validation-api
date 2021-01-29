@@ -1,12 +1,14 @@
 const express = require('express');
 const cors = require('cors');
 const routes = require('./routes');
+const helmet = require('helmet');
 const errorHandler = require('./utils/errorHandler');
 require('dotenv').config();
 
 const app = express();
 const PORT = process.env.PORT || 5000;
 
+app.use(helmet);
 app.use(express.json());
 app.use(cors());
 
@@ -36,5 +38,5 @@ app.all('*', (request, response) => {
 app.use(errorHandler);
 
 app.listen(PORT, () => {
-  console.log(`App is running on port ${PORT}. \nPress ctrl + c to stop`);
+  console.log(`App is running on port ${PORT}.\nPress ctrl + c to stop`);
 });

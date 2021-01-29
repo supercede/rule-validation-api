@@ -27,7 +27,7 @@ class BadRequestError extends ApplicationError {
    * @param {string} message error message
    */
   constructor(message, data) {
-    super(400, message || 'Invalid JSON payload passed.');
+    super(400, message || 'Bad Request', data);
   }
 }
 

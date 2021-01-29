@@ -1,6 +1,6 @@
 const { BadRequestError } = require('../utils/errors');
 
-class ValidateRule {
+class ValidateReqBody {
   /**
    *Creates an instance of validateRule.
    * @param {Object} body the request body containing rules and data
@@ -31,7 +31,7 @@ class ValidateRule {
   }
 
   /**
-   * @function
+   * @method
    * @description checks if the passed field is a valid JSON object
    *
    * @param {Object} obj the object to be validated
@@ -41,17 +41,13 @@ class ValidateRule {
    * @memberof validateRule
    */
   isJSONObject(obj, key) {
-    try {
-      if (typeof obj !== 'object' || Array.isArray(obj) || obj === null) {
-        throw new BadRequestError(`${key} should be an object.`);
-      }
-    } catch (err) {
-      throw new BadRequestError();
+    if (typeof obj !== 'object' || Array.isArray(obj) || obj === null) {
+      throw new BadRequestError(`${key} should be an object.`);
     }
   }
 
   /**
-   * @function
+   * @method
    * @description checks if all required fields are present in the provided object
    *
    * @param {Object} rule the object to be validated
@@ -65,7 +61,7 @@ class ValidateRule {
   }
 
   /**
-   * @function
+   * @method
    * @description validates nesting level
    *
    * @param {String} fieldName the fieldname to be validated
@@ -88,7 +84,7 @@ class ValidateRule {
   }
 
   /**
-   * @function
+   * @method
    * @description validates condition passed in rule object
    *
    * @param {String} condition the condition to be validated
@@ -103,7 +99,7 @@ class ValidateRule {
   }
 
   /**
-   * @function
+   * @method
    * @description checks if field to be validated exists in data object
    *
    * @param {String} field field to be checked
@@ -141,14 +137,36 @@ class ValidateRule {
     }
   }
 
+  /**
+   * @method
+   * @description checks if data is of the specified type (array, string, object)
+   *
+   * @param {String} field data to be validated
+   *
+   * @returns {Error} returns an error if the data is not of specified type
+   * @memberof validateRule
+   */
+  validateDataType(data) {
+    if (typeof data !== 'string' && typeof data !== 'object') {
+      throw new BadRequestError(`data should be a string, array or object.`);
+    }
+  }
+
+  /**
+   * @method
+   * @description validate incoming request body
+   *
+   * @memberof ValidateRule
+   */
   validateRule() {
     this.required(this.body, ['rule', 'data']);
     this.isJSONObject(this.rule, 'rule');
     this.validateRuleFields(this.rule);
     this.checkNestingLevel(this.rule.field);
     this.validateRuleCondition(this.rule.condition);
+    this.validateDataType(this.data);
     this.checkIfRuleFieldExists(this.rule.field, this.data);
   }
 }
 
-module.exports = ValidateRule;
+module.exports = ValidateReqBody;
