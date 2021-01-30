@@ -71,14 +71,14 @@ class ValidateReqBody {
    */
   checkNestingLevel(fieldName) {
     if (typeof fieldName !== 'string') {
-      throw new BadRequestError('field should be an object.');
+      throw new BadRequestError('field should be a string.');
     }
     const nestLevel = fieldName.split('.').length;
 
     // 0 level nesting = array Length 1, 1 level = arrLength 2...
     if (nestLevel > 3) {
       throw new BadRequestError(
-        `field should not contain more than 2 levels of nesting.`
+        `field value ${fieldName} contains more than 2 levels of nesting.`
       );
     }
   }
@@ -95,7 +95,7 @@ class ValidateReqBody {
   validateRuleCondition(condition) {
     const allowedFields = ['eq', 'neq', 'gt', 'gte', 'contains'];
     if (!allowedFields.includes(condition))
-      throw new BadRequestError(`invalid condition: ${condition}.`);
+      throw new BadRequestError(`invalid condition: '${condition}'.`);
   }
 
   /**

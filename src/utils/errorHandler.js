@@ -13,18 +13,17 @@ config();
  * @returns {Object} response from the server
  */
 module.exports = (err, request, response, next) => {
-  const isProduction = process.env.NODE_ENV === 'production';
+  const isDevelopment = process.env.NODE_ENV === 'development';
+
   let errorMessage = {};
 
   if (response.headersSent) {
     return next(err);
   }
 
-  if (
-    err instanceof SyntaxError &&
-    err.message.includes('Unexpected token " in JSON')
-  ) {
+  if (err instanceof SyntaxError && err.stack.includes('JSON.parse')) {
     err.message = 'Invalid JSON payload passed.';
+    err.data = null;
   }
 
   errorMessage = err.stack;
@@ -34,6 +33,6 @@ module.exports = (err, request, response, next) => {
     message: err.message,
     status: 'error',
     data: err.data,
-    ...(!isProduction && { trace: errorMessage }),
+    ...(isDevelopment && { trace: errorMessage }),
   });
 };
