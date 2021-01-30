@@ -1,14 +1,15 @@
 # Rule-validation-api
 
-A repository to validate a request data according to provided rules, created for the Flutterwave Backend Developer Assessment.
+A repository to validate a request data according to provided rules, created for the Flutterwave Fulltime Backend Developer Assessment.
 
 [![Run in Postman](https://run.pstmn.io/button.svg)](https://app.getpostman.com/run-collection/f5781aa883d5f1486df9)
 
 ### Prerequisites
 
-Ensure you have the following installed on your local machine:
+Install the following in your computer if you don't have them:
 
 - [NodeJS](https://nodejs.org/en/download/)
+- [Docker](https://www.docker.com/products/docker-desktop) (Optional)
 
 ### Technologies Used
 
@@ -17,9 +18,9 @@ Ensure you have the following installed on your local machine:
 
 ### Project Links
 
-[Hosted API](https://flw-validation-api.herokuapp.com)
+- [Hosted API](https://flw-validation-api.herokuapp.com)
 
-[API Documentation](https://documenter.getpostman.com/view/9950313/TW6xp8vH)
+- [API Documentation](https://documenter.getpostman.com/view/9950313/TW6xp8vH)
 
 ### Installing/Running locally
 
@@ -57,3 +58,7 @@ Each response will be returned with one of the following HTTP status codes:
 - `400` `Bad Request` Validation error/Malformed Request
 - `404` `Not Found` Visited route not found
 - `500` `Internal Server Error`An error occurred in the server
+
+## Documentation
+
+- [Postman](https://documenter.getpostman.com/view/9950313/TW6xp8vH)
