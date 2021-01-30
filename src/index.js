@@ -20,7 +20,7 @@ app.get('/', (request, response) => {
       name: 'Sijuade Ajagunna',
       github: '@supercede',
       email: 'mahyor.sam@gmail.com',
-      mobile: process.env.PHONE_NUMBER,
+      mobile: process.env.PHONE_NUMBER || '012345678',
       twitter: '@DEST1NY_',
     },
   });

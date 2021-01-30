@@ -1,8 +1,6 @@
 const server = require('../setup');
 const data = require('../../fixtures/data');
 
-// const server.post('/validate-rule');
-
 describe('validation route', () => {
   describe('should throw error if required fields are not passed', () => {
     test('throw error if rule is not passed', async () => {
@@ -168,15 +166,6 @@ describe('validation route', () => {
 
       expect(200);
       expect(response.body).toEqual({
-        // message: 'field missions.count.0 successfully validated.',
-        // status: 'success',
-        // data: {
-        //   error: false,
-        //   field: 'missions.count.0',
-        //   field_value: 30,
-        //   condition: 'gte',
-        //   condition_value: 30,
-        // },
         message: 'field missions.count successfully validated.',
         status: 'success',
         data: {

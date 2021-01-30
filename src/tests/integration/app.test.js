@@ -27,7 +27,7 @@ describe('App setup and home route', () => {
     done();
   });
 
-  test('custom error if invalid JSON data is sent', async () => {
+  test('custom error if invalid JSON data is sent', async (done) => {
     const response = await server
       .post('/validate-rule')
       .send('{"invalid"}')
@@ -39,5 +39,6 @@ describe('App setup and home route', () => {
       status: 'error',
       data: null,
     });
+    done();
   });
 });

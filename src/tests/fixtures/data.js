@@ -21,7 +21,7 @@ module.exports = {
   },
 
   stringRule: {
-    rule: '',
+    rule: 'lessthan5',
     data: 'ali',
   },
 

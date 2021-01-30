@@ -24,7 +24,7 @@ class ValidateReqBody {
    */
   required(obj, fields) {
     for (const field of fields) {
-      if (obj[`${field}`] == null) {
+      if (obj[field] == null || obj[field] == '') {
         throw new BadRequestError(`${field} is required.`);
       }
     }
